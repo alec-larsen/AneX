@@ -13,3 +13,6 @@ data
 
 #Ignore rough/scratch work files
 scratch.*
+
+# AneStat currently has no substantive work. It will be included when the first important modules are added.
+anestat
