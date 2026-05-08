@@ -1,0 +1,8 @@
+project:
+  title: "AneX"
+execute:
+  working-directory: ..
+  enabled: true
+  env:
+    PYTHONPATH: ".."
+engine: python

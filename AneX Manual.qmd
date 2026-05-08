@@ -1,0 +1,54 @@
+---
+title: AneX Manual - Model 1.0.0 (Scratch)
+author: Alec Larsen (via AneX)
+date: now
+date-format: "MMMM D YYYY - HH:mm:ss (z)"
+
+format:
+    html:
+        code-fold: true
+        title-block-banner: "#472745"
+        title-block-banner-color: "#FFFFFF"
+
+engine: jupyter
+jupyter: python3
+
+execute:
+    include: false
+    echo: false
+    notebook: false
+---
+
+# NOTE
+This manual is currently incomplete
+
+# Introduction
+This document details the current functionalities, known limitations, and future plans for AneX.
+
+## A 'Brief' History
+AneX has been slowly built over the course of the last year, and will likely continue to slowly progress for the forseeable future as my working knowledge of statistics and modeling improves.
+
+### Era 1: Hockey Statistical Compiler (HSC)
+In May of 2025, a few weeks away from the start of the Stanley Cup finals, I started, what was intended to be, a very short project. I hoped to build a model to produce a very rough estimate of the probability that the Edmonton Oilers would win the Stanley Cup.
+
+Having used R extensively for an introductory statistics, I opted to use R for my main
+
+### Era 2: AneStat and Leafs Status Report
+Though the results coming form HSC were very rough and far from polished, I saw potential in the small set of results I had siumulated. I decided to slowly build out the original version, intended to only simulate single games at a time, into a larger, more extensive project, with the goal of being able to simulate the entire NHL regular season
+
+# The Pipeline
+AneX's data processing pipeline can be split into three main sections; ingestion, cleaning, and compilation.
+
+## Ingestion
+
+
+## Cleaning
+
+
+## Compilation
+
+In its current state, I consider AneX's data pipeline complete, but not final. It's complete in the sense that it has the capability to ingest play-by-play data from the NHL API and process it into a format that's easily usable by all of the completed modeling modules. The pipeline is not final in the sense that it will likely continue to change as new modeling modules are added. Very briefly:
+
+- Ingestion will likely only be modified if the model expands to use new data outside of play-by-plays.
+- Cleaning will likely only be modified if game metadata the algorithm currently removes from the raw data is added to the model.
+- Compilation is the most subject to change, almost certainly being modified whenever new parameter sets are added into the model's run options.

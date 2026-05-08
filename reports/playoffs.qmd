@@ -1,0 +1,27 @@
+---
+title: AneX Frost Daily Playoff Status
+author: Alec Larsen (via AneX)
+date: now
+date-format: "MMMM D YYYY - HH:mm:ss (z)"
+
+format:
+    html:
+        code-fold: true
+        title-block-banner: "#472745"
+        title-block-banner-color: "#FFFFFF"
+
+    pdf: default
+
+engine: jupyter
+jupyter: python3
+
+execute:
+    include: false
+    echo: false
+    notebook: false
+---
+
+```{python}
+#Setup code
+
+```

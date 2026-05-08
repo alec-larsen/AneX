@@ -1,0 +1,123 @@
+---
+title: AneX Frost Daily Report
+author: Alec Larsen (via AneX)
+date: now
+date-format: "MMMM D YYYY - HH:mm:ss (z)"
+
+format:
+    html:
+        code-fold: true
+        title-block-banner: "#472745"
+        title-block-banner-color: "#FFFFFF"
+
+    pdf: default
+
+engine: jupyter
+jupyter: python3
+
+execute:
+    include: false
+    echo: false
+    notebook: false
+---
+
+```{python}
+#Runtime settings/parameters
+param_set = "Alpha"
+model_type = "Multiple Linear Regression"
+data_gen = "Multivariate Normal"
+```
+
+```{python}
+#Setup to import AneX modules
+import sys
+sys.path.append("..")
+import anefrost
+from aneutil import *
+```
+
+```{python}
+anefrost.state.set_model(param_set)
+```
+
+# Compilation Details
+
+## Activity Log
+
+### Setup
+```{python}
+n,t1 = anefrost.pipeline.ingest_pbp()
+```
+`{python} now()`: Ingested `{python} n` game play-by-plays: `{python} durstr(t1)`
+
+```{python}
+t2 = anefrost.pipeline.clean_pbp()
+```
+`{python} now()`: Cleaned all play-by-play data: `{python} durstr(t2)`
+
+```{python}
+t3 = anefrost.pipeline.team_summaries()
+```
+`{python} now()`: Compiled all play-by-play data: `{python} durstr(t3)`
+
+```{python}
+t4 = anefrost.pipeline.game_slates()
+```
+
+`{python} now()`: Partioned last 41 home and away games for each team: `{python} durstr(t4)`
+
+**Total setup time: `{python} durstr(t1+t2+t3+t4)`**
+
+### Model Building
+```{python}
+t1, score, correct, non_so = anefrost.pipeline.team_summary_model()
+```
+`{python} now()`: Retrained model: `{python} durstr(t1)`
+
+```{python}
+t2 = anefrost.pipeline.state_generator()
+```
+`{python} now()`: Computed data generation parameters: `{python} durstr(t2)`
+
+**Total model building time: `{python} durstr(t1+t2)`**
+
+### Result Computation
+```{python}
+t1, md1, md2 = anefrost.pipeline.hth_results()
+```
+`{python} now()`: Generated head-to-head probability table: `{python} durstr(t1)`
+
+**Total result computation time: `{python} durstr(t1)`**
+
+## Model Information
+**Model Name:** `{python} model_type`
+
+**Model Type:** Multiple Linear Regression (`{python} len(anefrost.statelookup.get_params(model_type))` parameters)
+
+**R² Score:** `{python} f"{score:.4f}"`
+
+**Wins Correctly Predicted (Excluding Shootout Games):** `{python} correct`/`{python} non_so` (`{python} f"{correct/non_so*100:.2f}"`%)
+
+## Data Generation
+**Game Data Generation Method:** Multivariate Normal Distribution
+
+**Parameter Covariances:** All Data
+
+**Parameter Variances:** By Team
+
+**Parameter Means:** By Team Home/Away
+
+# Appendices
+
+## Simulated-Head-To-Head Probabilities
+```{python}
+#| output: asis
+#| include: true 
+print(md1.data)
+```
+
+```{python}
+#| output: asis
+#| include: true 
+print(md2.data)
+```
