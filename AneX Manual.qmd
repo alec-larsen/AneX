@@ -19,22 +19,27 @@ execute:
     notebook: false
 ---
 
-# NOTE
-This manual is currently incomplete
-
 # Introduction
 This document details the current functionalities, known limitations, and future plans for AneX.
 
+## NOTE
+This manual is currently incomplete. Expect frequent changes as new sections are written over the next several days.
+
 ## A 'Brief' History
-AneX has been slowly built over the course of the last year, and will likely continue to slowly progress for the forseeable future as my working knowledge of statistics and modeling improves.
+AneX has been slowly built over the course of the last year, and will likely continue to slowly progress for the forseeable future as my working knowledge of statistics and modeling improves. While it originally began as an informal personal project, it has since evolved into a much more complicated system.
+
+Beyond all other aspects, I'm treating AneX as a learning experience. As the major changes between different verions suggest, I am always looking for different ways to improve my statistical modeling and other related skills. With the current model to predict home goal differential intended to be temporary and having notable limitations, I have a clear goal to work towards at the moment.
 
 ### Era 1: Hockey Statistical Compiler (HSC)
 In May of 2025, a few weeks away from the start of the Stanley Cup finals, I started, what was intended to be, a very short project. I hoped to build a model to produce a very rough estimate of the probability that the Edmonton Oilers would win the Stanley Cup.
 
-Having used R extensively for an introductory statistics, I opted to use R for my main
+Having used R extensively for an introductory statistics, I opted to use R for the main scaffolding. However, having also taken introductory mechaine learning earlier in the year, I was interested in using Python (specifically sklearn) to handle the training of basic supervised learning algorithms.
 
 ### Era 2: AneStat and Leafs Status Report
 Though the results coming form HSC were very rough and far from polished, I saw potential in the small set of results I had siumulated. I decided to slowly build out the original version, intended to only simulate single games at a time, into a larger, more extensive project, with the goal of being able to simulate the entire NHL regular season
+
+### Era 3: AneX (Current)
+AneStat solved the main problems in HSC, lack of generality and scale. However, running the project over the course of an active season raised another issue; manually updating data is a time consuming process.
 
 # The Pipeline
 AneX's data processing pipeline can be split into three main sections; ingestion, cleaning, and compilation.
