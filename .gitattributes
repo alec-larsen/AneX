@@ -1,2 +1,2 @@
 #All HTML within this repository is quarto-generated.
-*.html linguist-detectable = false
+*.html linguist-generated=true
