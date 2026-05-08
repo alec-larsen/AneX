@@ -1,0 +1,15 @@
+#Exclude excess metadata folders
+.quarto
+__pycache__
+AneX Manual_files
+scratch_files
+daily_puck_files
+
+#Data obtained from NHL API is owned by the NHL. It can be used, but not redistributed.
+data
+
+#Jupyter Notebook files are build artifacts
+*.quarto_ipynb_[0-9]*
+
+#Ignore rough/scratch work files
+scratch.*
