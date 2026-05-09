@@ -81,7 +81,7 @@ background: #472745;
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">May 7 2026 - 17:44:33 (EDT)</p>
+        <p class="date">May 9 2026 - 09:58:11 (EDT)</p>
       </div>
     </div>
     
@@ -100,16 +100,32 @@ background: #472745;
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
 <p>This document details the current functionalities, known limitations, and future plans for AneX.</p>
+<section id="note" class="level2">
+<h2 class="anchored" data-anchor-id="note">NOTE</h2>
+<p>This manual is currently incomplete. Expect frequent changes as new sections are written over the next several days.</p>
+</section>
 <section id="a-brief-history" class="level2">
 <h2 class="anchored" data-anchor-id="a-brief-history">A ‘Brief’ History</h2>
-<p>AneX has been slowly built over the course of the last year, and will likely continue to slowly progress for the forseeable future as my working knowledge of statistics and modeling improves.</p>
+<p>AneX has been slowly built over the course of the last year, and will likely continue to slowly progress for the forseeable future as my working knowledge of statistics and modeling improves. While it originally began as an informal personal project, it has since evolved into a much more complicated system.</p>
+<p>Beyond all other aspects, I’m treating AneX as a learning experience. As the major changes between different verions suggest, I am always looking for different ways to improve my statistical modeling and other related skills. With the current model to predict home goal differential intended to be temporary and having notable limitations, I have a clear goal to work towards at the moment.</p>
 <section id="era-1-hockey-statistical-compiler-hsc" class="level3">
 <h3 class="anchored" data-anchor-id="era-1-hockey-statistical-compiler-hsc">Era 1: Hockey Statistical Compiler (HSC)</h3>
 <p>In May of 2025, a few weeks away from the start of the Stanley Cup finals, I started, what was intended to be, a very short project. I hoped to build a model to produce a very rough estimate of the probability that the Edmonton Oilers would win the Stanley Cup.</p>
-<p>Having used R extensively for an introductory statistics, I opted to use R for my main</p>
+<p>Having used R extensively for an introductory statistics, I opted to use R for the main scaffolding. However, having also taken introductory mechaine learning earlier in the year, I was interested in using Python (specifically sklearn) to handle the training of basic supervised learning algorithms.</p>
 </section>
 <section id="era-2-anestat-and-leafs-status-report" class="level3">
 <h3 class="anchored" data-anchor-id="era-2-anestat-and-leafs-status-report">Era 2: AneStat and Leafs Status Report</h3>
+<p>Though the results coming form HSC were very rough and far from polished, I saw potential in the small set of results I had siumulated. I decided to slowly build out the original version, intended to only simulate single games at a time, into a larger, more extensive project, with the goal of being able to simulate the entire NHL regular season</p>
+</section>
+<section id="era-3-anex-current" class="level3">
+<h3 class="anchored" data-anchor-id="era-3-anex-current">Era 3: AneX (Current)</h3>
+<p>AneStat solved the main problems in HSC, lack of generality and scale. However, running the project over the course of an active season raised another issue; manually updating data each morning to add all games played the previous night is a time consuming process. As a result, I began work on a ‘successor version’ of AneStat with the goal of automating data ingestion.</p>
+<p>While a number of people had already written code to collect and organize data from the NHL API before, I opted not to consult them. As working on AneX has always been intended as a learning experience, I felt that I would gain more by building the entire pipeline myself. The only information I consulted other sources for was the exact URL for any API access point I wanted to use.</p>
+</section>
+<section id="where-anex-stands-now" class="level3">
+<h3 class="anchored" data-anchor-id="where-anex-stands-now">Where AneX Stands Now</h3>
+<p>At the moment, the only data my model uses from the NHL API is play-by-plays for each regular season game (over the last 2 seasons).</p>
+<p>AneX’s modeling is in active development. I am currently in the planning stages of a few new models that are more conceptually strong. Instead of attempting to model goal differential as a function of all compiled team statistics, I am hoping to build a model that partitions statistics into meaningful subsets, each of which produces results that have some explainable significance.</p>
 </section>
 </section>
 </section>
@@ -130,6 +146,23 @@ background: #472745;
 <li>Cleaning will likely only be modified if game metadata the algorithm currently removes from the raw data is added to the model.</li>
 <li>Compilation is the most subject to change, almost certainly being modified whenever new parameter sets are added into the model’s run options.</li>
 </ul>
+</section>
+</section>
+<section id="the-model" class="level1">
+<h1>The Model</h1>
+<p><strong>Please note: the modeling of AneX is still under active development. Treat most modeling as experimental in this project unless otherwise stated.</strong></p>
+<section id="home-goal-differential-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="home-goal-differential-prediction">Home Goal Differential Prediction</h2>
+</section>
+<section id="aggregate-statline-generation" class="level2">
+<h2 class="anchored" data-anchor-id="aggregate-statline-generation">Aggregate Statline Generation</h2>
+<p>Currently, I have two separate methods to generate aggregate statlines; a random sample from a multivariate normal distribution and discrete sampling.</p>
+<section id="multivariate-normal-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="multivariate-normal-distribution">Multivariate Normal Distribution</h3>
+</section>
+<section id="discrete-sampling" class="level3">
+<h3 class="anchored" data-anchor-id="discrete-sampling">Discrete Sampling</h3>
+</section>
 </section>
 </section>
 

@@ -39,7 +39,14 @@ Having used R extensively for an introductory statistics, I opted to use R for t
 Though the results coming form HSC were very rough and far from polished, I saw potential in the small set of results I had siumulated. I decided to slowly build out the original version, intended to only simulate single games at a time, into a larger, more extensive project, with the goal of being able to simulate the entire NHL regular season
 
 ### Era 3: AneX (Current)
-AneStat solved the main problems in HSC, lack of generality and scale. However, running the project over the course of an active season raised another issue; manually updating data is a time consuming process.
+AneStat solved the main problems in HSC, lack of generality and scale. However, running the project over the course of an active season raised another issue; manually updating data each morning to add all games played the previous night is a time consuming process. As a result, I began work on a 'successor version' of AneStat with the goal of automating data ingestion.
+
+While a number of people had already written code to collect and organize data from the NHL API before, I opted not to consult them. As working on AneX has always been intended as a learning experience, I felt that I would gain more by building the entire pipeline myself. The only information I consulted other sources for was the exact URL for any API access point I wanted to use.
+
+### Where AneX Stands Now
+At the moment, the only data my model uses from the NHL API is play-by-plays for each regular season game (over the last 2 seasons).
+
+AneX's modeling is in active development. I am currently in the planning stages of a few new models that are more conceptually strong. Instead of attempting to model goal differential as a function of all compiled team statistics, I am hoping to build a model that partitions statistics into meaningful subsets, each of which produces results that have some explainable significance.
 
 # The Pipeline
 AneX's data processing pipeline can be split into three main sections; ingestion, cleaning, and compilation.
@@ -57,3 +64,15 @@ In its current state, I consider AneX's data pipeline complete, but not final. I
 - Ingestion will likely only be modified if the model expands to use new data outside of play-by-plays.
 - Cleaning will likely only be modified if game metadata the algorithm currently removes from the raw data is added to the model.
 - Compilation is the most subject to change, almost certainly being modified whenever new parameter sets are added into the model's run options.
+
+# The Model
+**Please note: the modeling of AneX is still under active development. Treat most modeling as experimental in this project unless otherwise stated.**
+
+## Home Goal Differential Prediction
+
+## Aggregate Statline Generation
+Currently, I have two separate methods to generate aggregate statlines; a random sample from a multivariate normal distribution and discrete sampling.
+
+### Multivariate Normal Distribution
+
+### Discrete Sampling
