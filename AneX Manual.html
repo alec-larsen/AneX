@@ -81,7 +81,7 @@ background: #472745;
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">May 9 2026 - 09:58:11 (EDT)</p>
+        <p class="date">May 20 2026 - 14:06:51 (EDT)</p>
       </div>
     </div>
     
@@ -134,9 +134,23 @@ background: #472745;
 <p>AneX’s data processing pipeline can be split into three main sections; ingestion, cleaning, and compilation.</p>
 <section id="ingestion" class="level2">
 <h2 class="anchored" data-anchor-id="ingestion">Ingestion</h2>
+<p>Data preprocessing starts with ingestion. We pull play-by-play data directly from the NHL API and onto our local system. This comes with a caveat; because the model currently uses the last two regular seasons of play-by-play data and the NHL API will temporarily disable ingestion from an IP address that makes many requests in a short amount of time, the initial setup of the model cannot be done in one pass (at full speed).</p>
+<p>My compromise to this problem is to initialize the model using ingestion passes of 100 games, spaced at least one hour apart. With the previous two seasons having 1312 total games, and seasons from 2026-2027 onwards having 1344 games, model setup requires 27 total passes (26 full and 1 partial). Fortunately, after the model is set up, daily updates pulling games from the previous night into the dataset can be done in a single pass.</p>
 </section>
 <section id="cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="cleaning">Cleaning</h2>
+<p>Data ingested from the NHL API is in a fairly ‘unfriendly’ JSON format, and contains a number of fields that the model doesn’t need. Cleaning removes all unneccessary game metadata (e.x. arena name, local start time) and flattens the data format into a dictionary of all required information as follows:</p>
+<ul>
+<li>Game ID</li>
+<li>Game date</li>
+<li>Home team information</li>
+<li>Away team information</li>
+<li>Game outcome (regulation, overtime, or shootout)</li>
+<li>Margin of victory (positive if home team won, else negative)</li>
+<li>List of all plays (excluding shootout)</li>
+<li>List of all shootout plays</li>
+<li>Rosters of both teams</li>
+</ul>
 </section>
 <section id="compilation" class="level2">
 <h2 class="anchored" data-anchor-id="compilation">Compilation</h2>

@@ -52,10 +52,22 @@ AneX's modeling is in active development. I am currently in the planning stages 
 AneX's data processing pipeline can be split into three main sections; ingestion, cleaning, and compilation.
 
 ## Ingestion
+Data preprocessing starts with ingestion. We pull play-by-play data directly from the NHL API and onto our local system. This comes with a caveat; because the model currently uses the last two regular seasons of play-by-play data and the NHL API will temporarily disable ingestion from an IP address that makes many requests in a short amount of time, the initial setup of the model cannot be done in one pass (at full speed).
 
+My compromise to this problem is to initialize the model using ingestion passes of 100 games, spaced at least one hour apart. With the previous two seasons having 1312 total games, and seasons from 2026-2027 onwards having 1344 games, model setup requires 27 total passes (26 full and 1 partial). Fortunately, after the model is set up, daily updates pulling games from the previous night into the dataset can be done in a single pass.
 
 ## Cleaning
+Data ingested from the NHL API is in a fairly 'unfriendly' JSON format, and contains a number of fields that the model doesn't need. Cleaning removes all unneccessary game metadata (e.x. arena name, local start time) and flattens the data format into a dictionary of all required information as follows:
 
+- Game ID
+- Game date
+- Home team information
+- Away team information
+- Game outcome (regulation, overtime, or shootout)
+- Margin of victory (positive if home team won, else negative)
+- List of all plays (excluding shootout)
+- List of all shootout plays
+- Rosters of both teams
 
 ## Compilation
 
